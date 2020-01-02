@@ -1,0 +1,58 @@
+﻿<Window x:Class="VovasKursach.View.ProductsListForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:VovasKursach.ViewModel"
+        mc:Ignorable="d"
+        Title="ProductsListForm" MaxHeight="650" MaxWidth="5000" Width="1000">
+    <Window.DataContext>
+        <viewModel:ProductsListFormViewModel x:Name="viewModel" />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0" Margin="5" ItemsSource="{Binding Products}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Фото товара" Width="300">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image MaxHeight="250" Source="{Binding ProductImagePath}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Название" Width="300">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Label FontSize="19" Content="{Binding Name}" />
+                                    <ListView ItemsSource="{Binding IngridientsProducts}" Height="200">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Header="Ингредиенты" DisplayMemberBinding="{Binding Ingredient.Name}" />
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Цена" Width="300">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Price}" HorizontalContentAlignment="Stretch" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Row="1" Margin="3" Orientation="Horizontal">
+            <Button Content="Добавить" FontSize="17" Margin="5" Padding="5" />
+            <Button Content="Редактировать" FontSize="17" Margin="5" Padding="5" />
+        </StackPanel>
+    </Grid>
+</Window>
