@@ -13,10 +13,10 @@ namespace VovasKursach
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBContext : DbContext
+    public partial class DatabaseContext : DbContext
     {
-        public DBContext()
-            : base("name=DBContext")
+        public DatabaseContext()
+            : base("name=DatabaseContext")
         {
         }
     

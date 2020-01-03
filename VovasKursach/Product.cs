@@ -22,27 +22,11 @@ namespace VovasKursach
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public int ProductType { get; set; }
+        public int ProductTypeId { get; set; }
         public string ProductImagePath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IngridientProduct> IngridientsProducts { get; set; }
-        public virtual ProductType ProductsTypes { get; set; }
-
-        // опасно, можен стереться конструктором модели
-        public double Price
-        {
-            get
-            {
-                decimal res = 0;
-
-                foreach (IngridientProduct item in IngridientsProducts)
-                {
-                    res += item.Ingredient.Price * item.IngCount;
-                }
-
-                return Convert.ToDouble(res);
-            }
-        }
+        public virtual ProductType ProductType { get; set; }
     }
 }

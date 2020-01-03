@@ -6,7 +6,9 @@
         xmlns:viewModel="clr-namespace:VovasKursach.ViewModel"
         mc:Ignorable="d"
         Title="ProductsListForm" MaxHeight="650" MaxWidth="5000" Width="1000">
+    <!--xmlns:data="clr-namespace:System.Windows.Data"-->
     <Window.DataContext>
+
         <viewModel:ProductsListFormViewModel x:Name="viewModel" />
     </Window.DataContext>
     <Grid>
@@ -29,10 +31,11 @@
                             <DataTemplate>
                                 <StackPanel>
                                     <Label FontSize="19" Content="{Binding Name}" />
-                                    <ListView ItemsSource="{Binding IngridientsProducts}" Height="200">
+                                    <ListView ItemsSource="{Binding IngredientsProducts}" Height="200">
                                         <ListView.View>
                                             <GridView>
                                                 <GridViewColumn Header="Ингредиенты" DisplayMemberBinding="{Binding Ingredient.Name}" />
+                                                <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding IngCount}" />
                                             </GridView>
                                         </ListView.View>
                                     </ListView>

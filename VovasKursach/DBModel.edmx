@@ -54,7 +54,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Ingredient__type__3D5E1FD2">
+        <Association Name="FK__Ingredient__type__18EBB532">
           <End Role="IngredientsTypes" Type="Self.IngredientsTypes" Multiplicity="1" />
           <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -66,7 +66,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingredient__unit__3E52440B">
+        <Association Name="FK__Ingredient__unit__19DFD96B">
           <End Role="Units" Type="Self.Units" Multiplicity="1" />
           <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -78,7 +78,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingridien__ingre__440B1D61">
+        <Association Name="FK__Ingridien__ingre__1F98B2C1">
           <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1" />
           <End Role="IngridientsProducts" Type="Self.IngridientsProducts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -90,7 +90,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingridien__produ__44FF419A">
+        <Association Name="FK__Ingridien__produ__208CD6FA">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="IngridientsProducts" Type="Self.IngridientsProducts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -102,7 +102,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__produc__412EB0B6">
+        <Association Name="FK__Products__produc__1CBC4616">
           <End Role="ProductsTypes" Type="Self.ProductsTypes" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -121,23 +121,23 @@
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductsTypes" EntityType="Self.ProductsTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Units" EntityType="Self.Units" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Ingredient__type__3D5E1FD2" Association="Self.FK__Ingredient__type__3D5E1FD2">
+          <AssociationSet Name="FK__Ingredient__type__18EBB532" Association="Self.FK__Ingredient__type__18EBB532">
             <End Role="IngredientsTypes" EntitySet="IngredientsTypes" />
             <End Role="Ingredients" EntitySet="Ingredients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingredient__unit__3E52440B" Association="Self.FK__Ingredient__unit__3E52440B">
+          <AssociationSet Name="FK__Ingredient__unit__19DFD96B" Association="Self.FK__Ingredient__unit__19DFD96B">
             <End Role="Units" EntitySet="Units" />
             <End Role="Ingredients" EntitySet="Ingredients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingridien__ingre__440B1D61" Association="Self.FK__Ingridien__ingre__440B1D61">
+          <AssociationSet Name="FK__Ingridien__ingre__1F98B2C1" Association="Self.FK__Ingridien__ingre__1F98B2C1">
             <End Role="Ingredients" EntitySet="Ingredients" />
             <End Role="IngridientsProducts" EntitySet="IngridientsProducts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingridien__produ__44FF419A" Association="Self.FK__Ingridien__produ__44FF419A">
+          <AssociationSet Name="FK__Ingridien__produ__208CD6FA" Association="Self.FK__Ingridien__produ__208CD6FA">
             <End Role="Products" EntitySet="Products" />
             <End Role="IngridientsProducts" EntitySet="IngridientsProducts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__produc__412EB0B6" Association="Self.FK__Products__produc__412EB0B6">
+          <AssociationSet Name="FK__Products__produc__1CBC4616" Association="Self.FK__Products__produc__1CBC4616">
             <End Role="ProductsTypes" EntitySet="ProductsTypes" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
@@ -156,9 +156,9 @@
           <Property Name="TypeId" Type="Int32" Nullable="false" />
           <Property Name="UnitId" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="IngredientsTypes" Relationship="Self.FK__Ingredient__type__3D5E1FD2" FromRole="Ingredients" ToRole="IngredientsTypes" />
-          <NavigationProperty Name="Units" Relationship="Self.FK__Ingredient__unit__3E52440B" FromRole="Ingredients" ToRole="Units" />
-          <NavigationProperty Name="IngridientsProducts" Relationship="Self.FK__Ingridien__ingre__440B1D61" FromRole="Ingredients" ToRole="IngridientsProducts" />
+          <NavigationProperty Name="IngredientType" Relationship="Self.FK__Ingredient__type__18EBB532" FromRole="Ingredients" ToRole="IngredientsTypes" />
+          <NavigationProperty Name="Unit" Relationship="Self.FK__Ingredient__unit__19DFD96B" FromRole="Ingredients" ToRole="Units" />
+          <NavigationProperty Name="IngridientsProducts" Relationship="Self.FK__Ingridien__ingre__1F98B2C1" FromRole="Ingredients" ToRole="IngridientsProducts" />
         </EntityType>
         <EntityType Name="IngredientType">
           <Key>
@@ -166,7 +166,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Ingredients" Relationship="Self.FK__Ingredient__type__3D5E1FD2" FromRole="IngredientsTypes" ToRole="Ingredients" />
+          <NavigationProperty Name="Ingredients" Relationship="Self.FK__Ingredient__type__18EBB532" FromRole="IngredientsTypes" ToRole="Ingredients" />
         </EntityType>
         <EntityType Name="IngridientProduct">
           <Key>
@@ -176,8 +176,8 @@
           <Property Name="IngredientId" Type="Int32" Nullable="false" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="IngCount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Ingredient" Relationship="Self.FK__Ingridien__ingre__440B1D61" FromRole="IngridientsProducts" ToRole="Ingredients" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Ingridien__produ__44FF419A" FromRole="IngridientsProducts" ToRole="Products" />
+          <NavigationProperty Name="Ingredient" Relationship="Self.FK__Ingridien__ingre__1F98B2C1" FromRole="IngridientsProducts" ToRole="Ingredients" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Ingridien__produ__208CD6FA" FromRole="IngridientsProducts" ToRole="Products" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -185,10 +185,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductType" Type="Int32" Nullable="false" />
+          <Property Name="ProductTypeId" Type="Int32" Nullable="false" />
           <Property Name="ProductImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="IngridientsProducts" Relationship="Self.FK__Ingridien__produ__44FF419A" FromRole="Products" ToRole="IngridientsProducts" />
-          <NavigationProperty Name="ProductsTypes" Relationship="Self.FK__Products__produc__412EB0B6" FromRole="Products" ToRole="ProductsTypes" />
+          <NavigationProperty Name="IngridientsProducts" Relationship="Self.FK__Ingridien__produ__208CD6FA" FromRole="Products" ToRole="IngridientsProducts" />
+          <NavigationProperty Name="ProductType" Relationship="Self.FK__Products__produc__1CBC4616" FromRole="Products" ToRole="ProductsTypes" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -196,17 +196,17 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Products__produc__412EB0B6" FromRole="ProductsTypes" ToRole="Products" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__produc__1CBC4616" FromRole="ProductsTypes" ToRole="Products" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Ingredients" Relationship="Self.FK__Ingredient__unit__3E52440B" FromRole="Units" ToRole="Ingredients" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ingredients" Relationship="Self.FK__Ingredient__unit__19DFD96B" FromRole="Units" ToRole="Ingredients" />
         </EntityType>
-        <Association Name="FK__Ingredient__type__3D5E1FD2">
+        <Association Name="FK__Ingredient__type__18EBB532">
           <End Role="IngredientsTypes" Type="KursachModel.IngredientType" Multiplicity="1" />
           <End Role="Ingredients" Type="KursachModel.Ingredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -218,19 +218,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingredient__unit__3E52440B">
+        <Association Name="FK__Ingredient__unit__19DFD96B">
           <End Role="Units" Type="KursachModel.Unit" Multiplicity="1" />
           <End Role="Ingredients" Type="KursachModel.Ingredient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Units">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Ingredients">
               <PropertyRef Name="UnitId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingridien__ingre__440B1D61">
+        <Association Name="FK__Ingridien__ingre__1F98B2C1">
           <End Role="Ingredients" Type="KursachModel.Ingredient" Multiplicity="1" />
           <End Role="IngridientsProducts" Type="KursachModel.IngridientProduct" Multiplicity="*" />
           <ReferentialConstraint>
@@ -242,7 +242,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingridien__produ__44FF419A">
+        <Association Name="FK__Ingridien__produ__208CD6FA">
           <End Role="Products" Type="KursachModel.Product" Multiplicity="1" />
           <End Role="IngridientsProducts" Type="KursachModel.IngridientProduct" Multiplicity="*" />
           <ReferentialConstraint>
@@ -254,7 +254,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__produc__412EB0B6">
+        <Association Name="FK__Products__produc__1CBC4616">
           <End Role="ProductsTypes" Type="KursachModel.ProductType" Multiplicity="1" />
           <End Role="Products" Type="KursachModel.Product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -262,34 +262,34 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Products">
-              <PropertyRef Name="ProductType" />
+              <PropertyRef Name="ProductTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DBContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DatabaseContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ingredients" EntityType="KursachModel.Ingredient" />
           <EntitySet Name="IngredientsTypes" EntityType="KursachModel.IngredientType" />
           <EntitySet Name="IngridientsProducts" EntityType="KursachModel.IngridientProduct" />
           <EntitySet Name="Products" EntityType="KursachModel.Product" />
           <EntitySet Name="ProductsTypes" EntityType="KursachModel.ProductType" />
           <EntitySet Name="Units" EntityType="KursachModel.Unit" />
-          <AssociationSet Name="FK__Ingredient__type__3D5E1FD2" Association="Self.FK__Ingredient__type__3D5E1FD2">
+          <AssociationSet Name="FK__Ingredient__type__18EBB532" Association="Self.FK__Ingredient__type__18EBB532">
             <End Role="IngredientsTypes" EntitySet="IngredientsTypes" />
             <End Role="Ingredients" EntitySet="Ingredients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingredient__unit__3E52440B" Association="Self.FK__Ingredient__unit__3E52440B">
+          <AssociationSet Name="FK__Ingredient__unit__19DFD96B" Association="Self.FK__Ingredient__unit__19DFD96B">
             <End Role="Units" EntitySet="Units" />
             <End Role="Ingredients" EntitySet="Ingredients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingridien__ingre__440B1D61" Association="Self.FK__Ingridien__ingre__440B1D61">
+          <AssociationSet Name="FK__Ingridien__ingre__1F98B2C1" Association="Self.FK__Ingridien__ingre__1F98B2C1">
             <End Role="Ingredients" EntitySet="Ingredients" />
             <End Role="IngridientsProducts" EntitySet="IngridientsProducts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingridien__produ__44FF419A" Association="Self.FK__Ingridien__produ__44FF419A">
+          <AssociationSet Name="FK__Ingridien__produ__208CD6FA" Association="Self.FK__Ingridien__produ__208CD6FA">
             <End Role="Products" EntitySet="Products" />
             <End Role="IngridientsProducts" EntitySet="IngridientsProducts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__produc__412EB0B6" Association="Self.FK__Products__produc__412EB0B6">
+          <AssociationSet Name="FK__Products__produc__1CBC4616" Association="Self.FK__Products__produc__1CBC4616">
             <End Role="ProductsTypes" EntitySet="ProductsTypes" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
@@ -299,7 +299,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="KursachModelStoreContainer" CdmEntityContainer="DBContext">
+        <EntityContainerMapping StorageEntityContainer="KursachModelStoreContainer" CdmEntityContainer="DatabaseContext">
           <EntitySetMapping Name="Ingredients">
             <EntityTypeMapping TypeName="KursachModel.Ingredient">
               <MappingFragment StoreEntitySet="Ingredients">
@@ -334,7 +334,7 @@
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="Id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="name" />
-                <ScalarProperty Name="ProductType" ColumnName="product_type" />
+                <ScalarProperty Name="ProductTypeId" ColumnName="product_type" />
                 <ScalarProperty Name="ProductImagePath" ColumnName="product_image_path" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -350,8 +350,8 @@
           <EntitySetMapping Name="Units">
             <EntityTypeMapping TypeName="KursachModel.Unit">
               <MappingFragment StoreEntitySet="Units">
-                <ScalarProperty Name="Id" ColumnName="id" />
-                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

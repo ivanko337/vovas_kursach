@@ -26,8 +26,8 @@ namespace VovasKursach
         public int UnitId { get; set; }
         public decimal Price { get; set; }
     
-        public virtual IngredientType IngredientsTypes { get; set; }
-        public virtual Unit Units { get; set; }
+        public virtual IngredientType IngredientType { get; set; }
+        public virtual Unit Unit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IngridientProduct> IngridientsProducts { get; set; }
     }
