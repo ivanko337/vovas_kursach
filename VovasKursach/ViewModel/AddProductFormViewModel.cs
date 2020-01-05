@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using VovasKursach.Infrastructure.Commands;
 
 namespace VovasKursach.ViewModel
 {
     public class AddProductFormViewModel : ViewModelBase
     {
-        public Product Product { get; set; }
+        public Product Product { get; set; } = new Product();
 
         public List<ProductType> ProductTypes
         {
@@ -20,6 +22,17 @@ namespace VovasKursach.ViewModel
 
                     return query.ToList();
                 }
+            }
+        }
+
+        public ICommand AddProductCommand
+        {
+            get
+            {
+                return new Command((obj) =>
+                {
+                    System.Windows.MessageBox.Show(Product.ProductType.TypeName);
+                });
             }
         }
     }

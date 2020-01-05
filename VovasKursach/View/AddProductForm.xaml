@@ -19,14 +19,16 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Content="Название блюда:" FontSize="15" Margin="3" HorizontalAlignment="Center" />
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Product.Name}" FontSize="15" Margin="3" />
 
         <Label Grid.Column="0" Grid.Row="1" Content="Тип продукта:" FontSize="15" Margin="3" HorizontalAlignment="Center" />
-        <ComboBox Grid.Column="1" Grid.Row="1" FontSize="15" Margin="3" ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding Product.ProductType}" />
+        <ComboBox Grid.Column="1" Grid.Row="1" FontSize="15" Margin="3" ItemsSource="{Binding ProductTypes}" DisplayMemberPath="TypeName" SelectedItem="{Binding Product.ProductType}" />
 
         <Label Grid.Column="0" Grid.Row="2" Content="Фото продукта:" FontSize="15" Margin="3" HorizontalAlignment="Center" />
         <Grid Grid.Column="1" Grid.Row="2" Margin="3">
@@ -34,8 +36,26 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Label Content="{Binding Product.ProductImagePath}" FontSize="15" />
+            <Label Content="{Binding Product.ProductImagePath}" FontSize="15" Margin="3" Padding="3" />
             <Button Content="Выбрать фото" Grid.Column="1" Padding="3" />
         </Grid>
+
+        <Label Grid.Column="0" Grid.Row="3" Content="Ингредиенты:" FontSize="15" Margin="3" HorizontalAlignment="Center" />
+        <Grid Grid.Column="1" Grid.Row="3" Margin="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Column="0" Margin="3" ItemsSource="{Binding Product.IngredientsProducts}" />
+            <StackPanel Grid.Column="1" >
+                <Button Margin="3" Padding="3" Content="Добавить ингредиент"  />
+                <Button Margin="3" Padding="3" Content="Удалить ингредиент" />
+            </StackPanel>
+        </Grid>
+
+        <Label Grid.Column="0" Grid.Row="4" Content="Рецепт блюда:" FontSize="15" HorizontalAlignment="Center" Margin="3" />
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Product.RecipeText}" FontSize="15" Margin="3" />
+
+        <Button Grid.Column="0" Grid.Row="5" Content="Добавить блюдо" Command="{Binding AddProductCommand}" FontSize="15" Padding="3" Margin="5" Grid.ColumnSpan="2" />
     </Grid>
 </Window>

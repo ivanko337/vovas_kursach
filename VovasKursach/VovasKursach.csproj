@@ -83,6 +83,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Commands\Command.cs" />
     <Compile Include="Ingredient.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -170,8 +171,6 @@
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
