@@ -17,16 +17,33 @@ namespace VovasKursach
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.IngridientsProducts = new HashSet<IngridientProduct>();
+            this.IngredientsProducts = new HashSet<IngridientProduct>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public int ProductTypeId { get; set; }
         public string ProductImagePath { get; set; }
+        public string RecipeText { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IngridientProduct> IngridientsProducts { get; set; }
+        public virtual ICollection<IngridientProduct> IngredientsProducts { get; set; }
         public virtual ProductType ProductType { get; set; }
+
+        // ОПАСНО. Может стереться конструктором модели
+        public double Price
+        {
+            get
+            {
+                decimal res = 0;
+
+                foreach (var item in IngredientsProducts)
+                {
+                    res += item.Ingredient.Price * item.IngCount;
+                }
+
+                return Convert.ToDouble(res);
+            }
+        }
     }
 }

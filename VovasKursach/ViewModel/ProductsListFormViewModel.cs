@@ -7,13 +7,6 @@ using System.Collections.ObjectModel;
 
 namespace VovasKursach.ViewModel
 {
-    public class SelectedProduct
-    {
-        public string Name { get; set; }
-        public List<IngridientProduct> IngredientsProducts { get; set; }
-        public string ProductImagePath { get; set; }
-    }
-
     public class ProductsListFormViewModel : ViewModelBase
     {
         public static ProductsListFormViewModel Instance;
@@ -23,21 +16,15 @@ namespace VovasKursach.ViewModel
             Instance = this;
         }
 
-        public ObservableCollection<SelectedProduct> Products
+        public List<Product> Products
         {
             get
             {
-                using (var context = new DatabaseContext())
+                using (var context = new KursachDBContext())
                 {
-                    var query = from p in context.Products
-                                select new SelectedProduct
-                                {
-                                    Name = p.Name,
-                                    IngredientsProducts = p.IngridientsProducts.ToList(),
-                                    ProductImagePath = p.ProductImagePath
-                                };
+                    var query = context.Products.Include("IngredientsProducts").Include("IngredientsProducts.Ingredient");
 
-                    return new ObservableCollection<SelectedProduct>(query);
+                    return query.ToList();
                 }
             }
         }

@@ -6,7 +6,6 @@
         xmlns:viewModel="clr-namespace:VovasKursach.ViewModel"
         mc:Ignorable="d"
         Title="ProductsListForm" MaxHeight="650" MaxWidth="5000" Width="1000">
-    <!--xmlns:data="clr-namespace:System.Windows.Data"-->
     <Window.DataContext>
 
         <viewModel:ProductsListFormViewModel x:Name="viewModel" />
