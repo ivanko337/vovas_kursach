@@ -5,7 +5,11 @@ namespace VovasKursach.Infrastructure.Commands
 {
     public class Command : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
 
         private Func<object, bool> canExecute;
         private Action<object> execute;
@@ -16,6 +20,12 @@ namespace VovasKursach.Infrastructure.Commands
             this.canExecute = canExecute;
         }
 
+        //public void RaiseCanExecuteChanged()
+        //{
+        //    if (CanExecuteChanged != null)
+        //        CanExecuteChanged(this, EventArgs.Empty);
+        //}
+
         public bool CanExecute(object parameter)
         {
             return canExecute == null ? true : canExecute(parameter);
@@ -23,10 +33,7 @@ namespace VovasKursach.Infrastructure.Commands
 
         public void Execute(object parameter)
         {
-            if (execute != null)
-            {
-                execute(parameter);
-            }
+            execute?.Invoke(parameter);
         }
     }
 }

@@ -102,11 +102,19 @@
     <Compile Include="Unit.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddIngredientViewModel.cs" />
     <Compile Include="ViewModel\AddProductFormViewModel.cs" />
+    <Compile Include="ViewModel\CreateIngredientFormViewModel.cs" />
     <Compile Include="ViewModel\ProductsListFormViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\AddIngredientForm.xaml.cs">
+      <DependentUpon>AddIngredientForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddProductForm.xaml.cs">
       <DependentUpon>AddProductForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreateIngredientForm.xaml.cs">
+      <DependentUpon>CreateIngredientForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProductsListForm.xaml.cs">
       <DependentUpon>ProductsListForm.xaml</DependentUpon>
@@ -150,7 +158,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\AddIngredientForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddProductForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateIngredientForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
