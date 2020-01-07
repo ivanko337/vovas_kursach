@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
+using VovasKursach.Infrastructure.Commands;
+using VovasKursach.View;
 
 namespace VovasKursach.ViewModel
 {
     public class ProductsListFormViewModel : ViewModelBase
     {
-        public static ProductsListFormViewModel Instance;
-
-        public ProductsListFormViewModel()
-        {
-            Instance = this;
-        }
-
-        public List<Product> Products
+        public ObservableCollection<Product> Products
         {
             get
             {
@@ -24,14 +15,51 @@ namespace VovasKursach.ViewModel
                 {
                     var query = context.Products.Include("IngredientsProducts").Include("IngredientsProducts.Ingredient");
 
-                    return query.ToList();
+                    return new ObservableCollection<Product>(query);
                 }
             }
         }
 
-        public void OnProductsUpdate()
+        public ICommand AddProductCommand
         {
+            get
+            {
+                return new Command(AddProduct);
+            }
+        }
+
+        public ICommand EditProductCommand
+        {
+            get
+            {
+                return new Command(EditProduct);
+            }
+        }
+
+        public ICommand DeleteProductCommand
+        {
+            get
+            {
+                return new Command(DeleteProduct);
+            }
+        }
+
+        private void AddProduct(object parameter)
+        {
+            AddProductForm form = new AddProductForm();
+            form.ShowDialog();
+
             OnProperyChanged(nameof(Products));
+        }
+
+        private void EditProduct(object parameter)
+        {
+
+        }
+
+        private void DeleteProduct(object parameter)
+        {
+
         }
     }
 }

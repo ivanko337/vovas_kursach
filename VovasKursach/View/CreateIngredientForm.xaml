@@ -1,4 +1,5 @@
 ﻿<Window x:Class="VovasKursach.View.CreateIngredientForm"
+        x:Name="form"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -40,6 +41,6 @@
 
         <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Padding="3" Content="Добавить новый тип ингредиентов" FontSize="15" Command="{Binding CreateIngredientTypeCommand}" />
         <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Padding="3" Content="Добавить новую еденицу измерения" FontSize="15" Command="{Binding CreateUnitCommand}" />
-        <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Padding="3" Content="Создать ингредиент" FontSize="20" Command="{Binding CreateUnitCommand}" />
+        <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Padding="3" Content="Создать ингредиент" FontSize="20" Command="{Binding CreateUnitCommand}" CommandParameter="{Binding ElementName=form}" />
     </Grid>
 </Window>
