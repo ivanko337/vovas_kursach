@@ -106,7 +106,9 @@
     <Compile Include="ViewModel\AddIngredientViewModel.cs" />
     <Compile Include="ViewModel\AddProductFormViewModel.cs" />
     <Compile Include="ViewModel\CreateIngredientFormViewModel.cs" />
+    <Compile Include="ViewModel\CreateIngredientTypeFormViewModel.cs" />
     <Compile Include="ViewModel\CreateProductTypeFormViewModel.cs" />
+    <Compile Include="ViewModel\CreateUnitFormViewModel.cs" />
     <Compile Include="ViewModel\ProductsListFormViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddIngredientForm.xaml.cs">
@@ -118,8 +120,14 @@
     <Compile Include="View\CreateIngredientForm.xaml.cs">
       <DependentUpon>CreateIngredientForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CreateIngredientTypeForm.xaml.cs">
+      <DependentUpon>CreateIngredientTypeForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreateProductTypeForm.xaml.cs">
       <DependentUpon>CreateProductTypeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreateUnitForm.xaml.cs">
+      <DependentUpon>CreateUnitForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProductsListForm.xaml.cs">
       <DependentUpon>ProductsListForm.xaml</DependentUpon>
@@ -175,7 +183,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CreateIngredientTypeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CreateProductTypeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateUnitForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

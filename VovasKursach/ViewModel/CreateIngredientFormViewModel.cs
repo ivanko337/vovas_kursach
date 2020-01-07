@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using VovasKursach.Infrastructure.Commands;
 using System.Windows.Input;
+using VovasKursach.View;
+using System.Windows;
 
 namespace VovasKursach.ViewModel
 {
@@ -45,7 +47,10 @@ namespace VovasKursach.ViewModel
             {
                 return new Command((obj) =>
                 {
+                    CreateIngredientTypeForm form = new CreateIngredientTypeForm();
+                    form.ShowDialog();
 
+                    OnProperyChanged(nameof(IngredientsTypes));
                 });
             }
         }
@@ -54,10 +59,50 @@ namespace VovasKursach.ViewModel
         {
             get
             {
-                return null;
+                return new Command((obj) =>
+                {
+                    CreateUnitForm form = new CreateUnitForm();
+                    form.ShowDialog();
+
+                    OnProperyChanged(nameof(Units));
+                });
             }
         }
 
+        public ICommand CreateIngredientCommand
+        {
+            get
+            {
+                return new Command(CreateIngredient, CanCreateIngredient);
+            }
+        }
 
+        private void CreateIngredient(object parameter)
+        {
+            using (var context = new KursachDBContext())
+            {
+                context.Ingredients.Add(NewIngredient);
+
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    ((Window)parameter).Close();
+                }
+            }
+        }
+
+        private bool CanCreateIngredient(object parameter)
+        {
+            return NewIngredient.IngredientType != null &&
+                !string.IsNullOrEmpty(NewIngredient.Name) &&
+                NewIngredient.Unit != null;
+        }
     }
 }

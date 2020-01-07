@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Forms;
@@ -118,7 +117,10 @@ namespace VovasKursach.ViewModel
             {
                 return new Command((obj) =>
                 {
-                    // надо допилякать форму
+                    CreateProductTypeForm form = new CreateProductTypeForm();
+                    form.ShowDialog();
+
+                    OnProperyChanged(nameof(ProductTypes));
                 });
             }
         }
