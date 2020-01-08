@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="ProductsListForm" MaxHeight="650" MaxWidth="5000" Width="1000">
     <Window.DataContext>
-
         <viewModel:ProductsListFormViewModel x:Name="viewModel" />
     </Window.DataContext>
     <Grid>
@@ -15,7 +14,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" Margin="5" ItemsSource="{Binding Products}">
+        <ListView Grid.Row="0" Margin="5" ItemsSource="{Binding Products}" x:Name="listView">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Фото товара" Width="300">
@@ -53,8 +52,8 @@
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="1" Margin="3" Orientation="Horizontal">
-            <Button Content="Добавить" FontSize="17" Margin="5" Padding="5" />
-            <Button Content="Редактировать" FontSize="17" Margin="5" Padding="5" />
+            <Button Content="Добавить" FontSize="17" Margin="5" Padding="5" Command="{Binding CreateProductCommand}" />
+            <Button Content="Удалить" FontSize="17" Margin="5" Padding="5" Command="{Binding DeleteProductCommand}" CommandParameter="{Binding ElementName=listView, Path=SelectedItem}" />
         </StackPanel>
     </Grid>
 </Window>

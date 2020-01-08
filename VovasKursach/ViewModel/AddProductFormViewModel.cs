@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
 using VovasKursach.Infrastructure.Commands;
@@ -11,7 +9,20 @@ namespace VovasKursach.ViewModel
 {
     public class AddProductFormViewModel : ViewModelBase
     {
-        public Product Product { get; set; }
+        private Product product;
+        public Product Product
+        {
+            get
+            {
+                return product;
+            }
+            set
+            {
+                product = value;
+                OnProperyChanged(nameof(Product));
+            }
+        }
+
 
         public ObservableCollection<ProductType> ProductTypes
         {
@@ -42,6 +53,8 @@ namespace VovasKursach.ViewModel
                 {
                     using (var context = new KursachDBContext())
                     {
+                        AddProductForm form = obj as AddProductForm;
+
                         context.Products.Add(this.Product);
 
                         try
@@ -51,6 +64,10 @@ namespace VovasKursach.ViewModel
                         catch (Exception ex)
                         {
                             System.Windows.MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            form.Close();
                         }
                     }
                 });
@@ -118,7 +135,10 @@ namespace VovasKursach.ViewModel
             {
                 return new Command((obj) =>
                 {
-                    // надо допилякать форму
+                    CreateProductTypeForm form = new CreateProductTypeForm();
+                    form.ShowDialog();
+
+                    OnProperyChanged(nameof(ProductTypes));
                 });
             }
         }
