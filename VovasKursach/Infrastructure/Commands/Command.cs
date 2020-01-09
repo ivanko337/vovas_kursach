@@ -20,12 +20,6 @@ namespace VovasKursach.Infrastructure.Commands
             this.canExecute = canExecute;
         }
 
-        //public void RaiseCanExecuteChanged()
-        //{
-        //    if (CanExecuteChanged != null)
-        //        CanExecuteChanged(this, EventArgs.Empty);
-        //}
-
         public bool CanExecute(object parameter)
         {
             return canExecute == null ? true : canExecute(parameter);

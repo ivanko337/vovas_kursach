@@ -5,33 +5,28 @@ using VovasKursach.Infrastructure.Commands;
 
 namespace VovasKursach.ViewModel
 {
-    public class CreateProductTypeFormViewModel : ViewModelBase
+    public class CreateUnitFormViewModel : ViewModelBase
     {
-        public ProductType NewType { get; set; }
+        public Unit NewUnit { get; set; }
 
-        public ICommand CreateTypeCommand
+        public ICommand CreateUnitCommand
         {
             get
             {
-                return new Command(CreateType);
+                return new Command(CreateUnit);
             }
         }
 
-        public CreateProductTypeFormViewModel()
+        private void CreateUnit(object parameter)
         {
-            NewType = new ProductType();
-        }
-
-        private void CreateType(object parameter)
-        {
-            if (string.IsNullOrEmpty(NewType.TypeName))
+            if (string.IsNullOrEmpty(NewUnit.Name))
             {
                 return;
             }
 
             using (var context = new KursachDBContext())
             {
-                context.ProductsTypes.Add(NewType);
+                context.Units.Add(NewUnit);
 
                 try
                 {

@@ -5,9 +5,9 @@ using VovasKursach.Infrastructure.Commands;
 
 namespace VovasKursach.ViewModel
 {
-    public class CreateProductTypeFormViewModel : ViewModelBase
+    public class CreateIngredientTypeFormViewModel : ViewModelBase
     {
-        public ProductType NewType { get; set; }
+        public IngredientType NewType { get; set; }
 
         public ICommand CreateTypeCommand
         {
@@ -15,11 +15,6 @@ namespace VovasKursach.ViewModel
             {
                 return new Command(CreateType);
             }
-        }
-
-        public CreateProductTypeFormViewModel()
-        {
-            NewType = new ProductType();
         }
 
         private void CreateType(object parameter)
@@ -31,7 +26,7 @@ namespace VovasKursach.ViewModel
 
             using (var context = new KursachDBContext())
             {
-                context.ProductsTypes.Add(NewType);
+                context.IngredientsTypes.Add(NewType);
 
                 try
                 {

@@ -38,6 +38,21 @@ namespace VovasKursach.ViewModel
             }
         }
 
+        private void CreateProduct(object parameter)
+        {
+            try
+            {
+                AddProductForm form = new AddProductForm();
+                form.ShowDialog();
+
+                OnProperyChanged(nameof(Products));
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
+
         private void DeleteProduct(object parameter)
         {
             Product product = parameter as Product;
@@ -57,14 +72,6 @@ namespace VovasKursach.ViewModel
                     System.Windows.MessageBox.Show(ex.Message);
                 }
             }
-        }
-
-        private void CreateProduct(object parameter)
-        {
-            AddProductForm form = new AddProductForm();
-            form.ShowDialog();
-
-            OnProperyChanged(nameof(Products));
         }
     }
 }
