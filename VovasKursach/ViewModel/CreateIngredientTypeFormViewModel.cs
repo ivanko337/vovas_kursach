@@ -42,5 +42,10 @@ namespace VovasKursach.ViewModel
                 }
             }
         }
+
+        public CreateIngredientTypeFormViewModel()
+        {
+            NewType = new IngredientType();
+        }
     }
 }

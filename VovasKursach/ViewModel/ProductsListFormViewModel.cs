@@ -59,7 +59,8 @@ namespace VovasKursach.ViewModel
 
             using (var context = new KursachDBContext())
             {
-                context.Products.Remove(context.Products.FirstOrDefault((p) => p.Id == product.Id));
+                var deleteEntity = context.Products.FirstOrDefault((p) => p.Id == product.Id);
+                context.Products.Remove(deleteEntity);
 
                 try
                 {

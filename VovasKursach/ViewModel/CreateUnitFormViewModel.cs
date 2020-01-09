@@ -42,5 +42,10 @@ namespace VovasKursach.ViewModel
                 }
             }
         }
+
+        public CreateUnitFormViewModel()
+        {
+            NewUnit = new Unit();
+        }
     }
 }

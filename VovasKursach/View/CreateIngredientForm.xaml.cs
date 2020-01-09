@@ -22,6 +22,11 @@ namespace VovasKursach.View
         public CreateIngredientForm()
         {
             InitializeComponent();
+
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+            {
+                return;
+            }
         }
     }
 }

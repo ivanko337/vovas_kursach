@@ -22,8 +22,8 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Еденица измерения:" HorizontalAlignment="Center" Margin="3" FontSize="15" />
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="3" FontSize="15" Text="{Binding NewType.TypeName}" />
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="3" FontSize="15" Text="{Binding NewUnit.Name}" />
 
-        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Padding="3" Content="Создать новый тип" FontSize="15" Command="{Binding CreateTypeCommand}" CommandParameter="{Binding ElementName=form}" />
+        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Padding="3" Content="Создать новую еденицу измерения" FontSize="15" Command="{Binding CreateUnitCommand}" CommandParameter="{Binding ElementName=form}" />
     </Grid>
 </Window>
