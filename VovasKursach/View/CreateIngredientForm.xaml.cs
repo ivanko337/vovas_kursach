@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using VovasKursach.ViewModel;
 
 namespace VovasKursach.View
 {
@@ -22,11 +23,6 @@ namespace VovasKursach.View
         public CreateIngredientForm()
         {
             InitializeComponent();
-
-            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
-            {
-                return;
-            }
         }
     }
 }

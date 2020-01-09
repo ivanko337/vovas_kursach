@@ -100,5 +100,10 @@ namespace VovasKursach.ViewModel
                 !string.IsNullOrEmpty(NewIngredient.Name) &&
                 NewIngredient.Unit != null;
         }
+
+        public CreateIngredientFormViewModel()
+        {
+            NewIngredient = new Ingredient();
+        }
     }
 }

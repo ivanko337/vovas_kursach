@@ -6,11 +6,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:VovasKursach.ViewModel"
         mc:Ignorable="d"
-        Title="CreateIngredientForm" Height="290" Width="800"
-        MinWidth="290">
-    <!--<Window.DataContext>
+        Title="CreateIngredientForm" Height="310" Width="800"
+        MinWidth="310">
+    <Window.DataContext>
         <viewModel:CreateIngredientFormViewModel x:Name="viewModel" />
-    </Window.DataContext>-->
+    </Window.DataContext>
     <Grid Margin="3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />

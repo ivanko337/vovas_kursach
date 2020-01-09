@@ -23,7 +23,6 @@ namespace VovasKursach.ViewModel
             }
         }
 
-
         public ObservableCollection<ProductType> ProductTypes
         {
             get
@@ -70,6 +69,15 @@ namespace VovasKursach.ViewModel
                             form.Close();
                         }
                     }
+                }, (obj) =>
+                {
+                    Product product = this.Product as Product;
+
+                    return product != null &&
+                            product.IngredientsProducts.Count != 0 &&
+                            !string.IsNullOrEmpty(product.Name) &&
+                            product.ProductType != null &&
+                            !string.IsNullOrEmpty(product.RecipeText);
                 });
             }
         }
@@ -124,7 +132,7 @@ namespace VovasKursach.ViewModel
                         Product.IngredientsProducts.Remove(item as IngridientProduct);
                     }
 
-                    OnProperyChanged(nameof(Product));
+                    OnProperyChanged(nameof(IngridientsProducts));
                 });
             }
         }
