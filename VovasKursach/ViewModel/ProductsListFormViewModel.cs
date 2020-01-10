@@ -38,6 +38,28 @@ namespace VovasKursach.ViewModel
             }
         }
 
+        public ICommand ProductDetailsCommand
+        {
+            get
+            {
+                return new Command(ProductDetails);
+            }
+        }
+
+        private void ProductDetails(object parameter)
+        {
+            Product p = parameter as Product;
+
+            if (p == null)
+            {
+                return;
+            }
+
+            ProductDetailsForm form = new ProductDetailsForm();
+            form.DataContext = p;
+            form.ShowDialog();
+        }
+
         private void CreateProduct(object parameter)
         {
             try

@@ -12,31 +12,36 @@
 namespace VovasKursach
 {
 
-using System;
+    using System;
     using System.Collections.Generic;
-    
-public partial class ProductType
-{
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public ProductType()
+    public partial class ProductType
     {
 
-        this.Products = new HashSet<Product>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProductType()
+        {
 
+            this.Products = new HashSet<Product>();
+
+        }
+
+
+        public int Id { get; set; }
+
+        public string TypeName { get; set; }
+
+
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        public virtual ICollection<Product> Products { get; set; }
+
+
+        public override string ToString()
+        {
+            return TypeName;
+        }
     }
-
-
-    public int Id { get; set; }
-
-    public string TypeName { get; set; }
-
-
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Product> Products { get; set; }
-
-}
 
 }

@@ -1,0 +1,59 @@
+﻿<Window x:Class="VovasKursach.View.ProductDetailsForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VovasKursach.View"
+        mc:Ignorable="d"
+        Title="ProductDetailsForm" Height="450" Width="800">
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Content="Название блюда:" FontSize="15" Margin="3" HorizontalAlignment="Center" />
+        <Label Grid.Column="1" Grid.Row="0" Content="{Binding Name}" FontSize="15" Margin="3" />
+
+        <Label Grid.Column="0" Grid.Row="1" Content="Тип продукта:" FontSize="15" Margin="3" HorizontalAlignment="Center" />
+        <Label Grid.Column="1" Grid.Row="1" FontSize="15" Margin="3" Content="{Binding ProductType}" />
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Фото продукта:" FontSize="15" Margin="3" HorizontalAlignment="Center" />
+        <Grid Grid.Column="1" Grid.Row="2" Margin="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="{Binding ProductImagePath}" FontSize="15" Margin="3" Padding="3" />
+        </Grid>
+
+        <Label Grid.Column="0" Grid.Row="3" Content="Ингредиенты:" FontSize="15" Margin="3" HorizontalAlignment="Center" />
+        <Grid Grid.Column="1" Grid.Row="3" Margin="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Column="0" Margin="3" ItemsSource="{Binding IngridientsProducts}" x:Name="ingredientsListView">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Ingredient.Name}" />
+                        <GridViewColumn Header="Количество" DisplayMemberBinding="{Binding IngCount}" />
+                        <GridViewColumn Header="Еденицы измерения" DisplayMemberBinding="{Binding Ingredient.Unit.Name}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+        <Label Grid.Column="0" Grid.Row="4" Content="Рецепт блюда:" FontSize="15" HorizontalAlignment="Center" Margin="3" />
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding RecipeText}" FontSize="15" Margin="3" />
+
+        <Label Grid.Column="0" Grid.Row="5" Content="Цена:" FontSize="15" HorizontalAlignment="Center" Margin="3" />
+        <Label Grid.Column="1" Grid.Row="5" Content="{Binding Price}" FontSize="15" HorizontalAlignment="Center" Margin="3" />
+    </Grid>
+</Window>

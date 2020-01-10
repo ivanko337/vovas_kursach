@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:VovasKursach.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="ProductsListForm" MaxHeight="650" MaxWidth="5000" Width="1000">
     <Window.DataContext>
@@ -15,6 +16,12 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <ListView Grid.Row="0" Margin="5" ItemsSource="{Binding Products}" x:Name="listView">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction CommandParameter="{Binding ElementName=listView, Path=SelectedItem}"
+                                   Command="{Binding ProductDetailsCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Фото товара" Width="300">

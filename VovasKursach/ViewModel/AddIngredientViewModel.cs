@@ -67,9 +67,17 @@ namespace VovasKursach.ViewModel
 
         private void CreateIngredient(object parameter)
         {
-            CreateIngredientForm form = new CreateIngredientForm();
-            form.ShowDialog();
-            OnProperyChanged(nameof(Ingredients));
+            try
+            {
+                CreateIngredientForm form = new CreateIngredientForm();
+                form.ShowDialog();
+
+                OnProperyChanged(nameof(Ingredients));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private bool CanAddIngredient(object parameter)
@@ -88,7 +96,7 @@ namespace VovasKursach.ViewModel
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using VovasKursach.ViewModel;
 
 namespace VovasKursach.View
 {

@@ -11,16 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Interactivity;
 
 namespace VovasKursach.View
 {
     /// <summary>
-    /// Interaction logic for ProductsListForm.xaml
+    /// Interaction logic for ProductDetailsForm.xaml
     /// </summary>
-    public partial class ProductsListForm : Window
+    public partial class ProductDetailsForm : Window
     {
-        public ProductsListForm()
+        public ProductDetailsForm()
         {
             InitializeComponent();
         }
