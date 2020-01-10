@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using VovasKursach.ViewModel;
 
 namespace VovasKursach.View
 {
@@ -19,9 +20,12 @@ namespace VovasKursach.View
     /// </summary>
     public partial class ProductDetailsForm : Window
     {
-        public ProductDetailsForm()
+        public ProductDetailsForm(Product product)
         {
             InitializeComponent();
+
+            ((ProductDetailsFormViewModel)this.DataContext).Product = product;
+            ((ProductDetailsFormViewModel)this.DataContext).OnProductChanged();
         }
     }
 }

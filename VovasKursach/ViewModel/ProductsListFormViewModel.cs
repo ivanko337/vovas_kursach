@@ -55,8 +55,7 @@ namespace VovasKursach.ViewModel
                 return;
             }
 
-            ProductDetailsForm form = new ProductDetailsForm();
-            form.DataContext = p;
+            ProductDetailsForm form = new ProductDetailsForm(p);
             form.ShowDialog();
         }
 

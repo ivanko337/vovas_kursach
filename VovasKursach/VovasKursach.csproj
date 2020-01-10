@@ -118,6 +118,7 @@
     <Compile Include="ViewModel\CreateIngredientTypeFormViewModel.cs" />
     <Compile Include="ViewModel\CreateProductTypeFormViewModel.cs" />
     <Compile Include="ViewModel\CreateUnitFormViewModel.cs" />
+    <Compile Include="ViewModel\ProductDetailsFormViewModel.cs" />
     <Compile Include="ViewModel\ProductsListFormViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddIngredientForm.xaml.cs">
