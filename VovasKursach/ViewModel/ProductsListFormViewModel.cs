@@ -132,16 +132,6 @@ namespace VovasKursach.ViewModel
                 var service = new ExcelService();
                 var query = from p in context.Products
                             select p;
-                /*
-                 new Product()
-                            {
-                                Id = p.Id,
-                                Name = p.Name,
-                                ProductImagePath = p.ProductImagePath,
-                                ProductType = p.ProductType,
-                                RecipeText = p.RecipeText
-                            };
-                 */
 
                 try
                 {

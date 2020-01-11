@@ -10,11 +10,9 @@ namespace VovasKursach.Infrastructure.Services
 {
     public class ExcelService
     {
-        private int MaxLenValue(IEnumerable<Product> products, Func<Product, string> func)
+        private int MaxLenValue(IEnumerable<Product> products, Func<Product, int> func)
         {
-
-
-            return 0;
+            return products.Max(func);
         }
 
         public void WriteToExcel(string path, IEnumerable<Product> products)
@@ -37,13 +35,11 @@ namespace VovasKursach.Infrastructure.Services
             workSheet.Cells.ClearContents();
 
             workSheet.Cells[1, 1] = "Id";
-            workSheet.Cells[1, 1] = "Name";
-            workSheet.Cells[1, 1] = "Product type";
-            workSheet.Cells[1, 1] = "Product image path";
-            workSheet.Cells[1, 1] = "Recipe text";
-            workSheet.Cells[1, 1] = "Price";
-
-
+            workSheet.Cells[1, 2] = "Name";
+            workSheet.Cells[1, 3] = "Product type";
+            workSheet.Cells[1, 4] = "Product image path";
+            workSheet.Cells[1, 5] = "Recipe text";
+            workSheet.Cells[1, 6] = "Price";
 
             int index = 2;
             foreach (Product product in products)
@@ -57,6 +53,8 @@ namespace VovasKursach.Infrastructure.Services
 
                 ++index;
             }
+
+            workSheet.Columns.AutoFit();
 
             workBook.Save();
 
