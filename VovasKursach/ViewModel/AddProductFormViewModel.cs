@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using VovasKursach.Infrastructure.Commands;
 using VovasKursach.View;
+using System.Linq;
 
 namespace VovasKursach.ViewModel
 {
@@ -53,6 +54,15 @@ namespace VovasKursach.ViewModel
                     using (var context = new KursachDBContext())
                     {
                         AddProductForm form = obj as AddProductForm;
+
+                        Product.ProductType = context.ProductsTypes.FirstOrDefault(pt => pt.Id == Product.ProductType.Id);
+
+                        foreach (var item in this.Product.IngredientsProducts)
+                        {
+                            // ох костыли моя жизнь
+                            // сие дело нужно для того, чтобы ингредиенты в бд не дублировались
+                            context.Entry(item.Ingredient).State = System.Data.Entity.EntityState.Modified;
+                        }
 
                         context.Products.Add(this.Product);
 
@@ -112,9 +122,16 @@ namespace VovasKursach.ViewModel
                 {
                     AddIngredientForm form = new AddIngredientForm();
                     ((AddIngredientViewModel)form.DataContext).NewProduct = this.Product;
-                    form.ShowDialog();
 
-                    OnProperyChanged(nameof(IngridientsProducts));
+                    if (form.ShowDialog().Value)
+                    {
+                        IngridientProduct ip = ((AddIngredientViewModel)form.DataContext).CurrIngredientProduct;
+                        ip.Product = this.Product;
+
+                        Product.IngredientsProducts.Add(ip);
+
+                        OnProperyChanged(nameof(IngridientsProducts));
+                    }
                 });
             }
         }

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using VovasKursach.Infrastructure.Commands;
 using VovasKursach.View;
+using System.Linq;
 
 namespace VovasKursach.ViewModel
 {
@@ -13,18 +14,19 @@ namespace VovasKursach.ViewModel
 
         public IngridientProduct CurrIngredientProduct { get; set; }
 
-        private Ingredient currIngredient;
         public Ingredient CurrIngredient
         {
             get
             {
-                return currIngredient;
+                return CurrIngredientProduct.Ingredient;
             }
             set
             {
-                currIngredient = value;
-
-                CurrIngredientProduct.Ingredient = currIngredient;
+                using (var context = new KursachDBContext())
+                {
+                    CurrIngredientProduct.Ingredient = context.Ingredients.Include("Unit").FirstOrDefault(i => i.Id == value.Id);
+                }
+                
                 OnProperyChanged(nameof(CurrIngredient));
                 OnProperyChanged(nameof(CurrIngredientProduct));
             }
@@ -61,8 +63,10 @@ namespace VovasKursach.ViewModel
 
         public AddIngredientViewModel()
         {
-            CurrIngredientProduct = new IngridientProduct();
-            currIngredient = new Ingredient();
+            using (var context = new KursachDBContext())
+            {
+                CurrIngredientProduct = context.IngridientsProducts.Create(); // FirstOrDefault();
+            }
         }
 
         private void CreateIngredient(object parameter)
@@ -89,10 +93,7 @@ namespace VovasKursach.ViewModel
         {
             try
             {
-                CurrIngredientProduct.Product = NewProduct;
-                NewProduct.IngredientsProducts.Add(CurrIngredientProduct);
-
-                ((Window)param).Close();
+                ((Window)param).DialogResult = true;
             }
             catch (Exception ex)
             {
