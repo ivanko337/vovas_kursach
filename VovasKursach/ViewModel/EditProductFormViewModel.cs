@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Forms;
 using System.Windows.Input;
 using VovasKursach.Infrastructure.Commands;
 using VovasKursach.View;
+using System.Windows.Forms;
 
 namespace VovasKursach.ViewModel
 {
-    public class AddProductFormViewModel : ViewModelBase
+    public class EditProductFormViewModel : ViewModelBase
     {
         private Product product;
         public Product Product
@@ -20,7 +20,25 @@ namespace VovasKursach.ViewModel
             set
             {
                 product = value;
+
                 OnProperyChanged(nameof(Product));
+                OnProperyChanged(nameof(IngridientsProducts));
+                OnProperyChanged(nameof(ProductType));
+
+            }
+        }
+
+        public ProductType ProductType
+        {
+            get
+            {
+                return Product.ProductType;
+            }
+            set
+            {
+                Product.ProductType = value;
+
+                OnProperyChanged(nameof(ProductType));
             }
         }
 
@@ -45,7 +63,7 @@ namespace VovasKursach.ViewModel
             }
         }
 
-        public ICommand AddProductCommand
+        public ICommand SaveProductCommand
         {
             get
             {
@@ -53,7 +71,7 @@ namespace VovasKursach.ViewModel
                 {
                     using (var context = new KursachDBContext())
                     {
-                        AddProductForm form = obj as AddProductForm;
+                        EditProductForm form = obj as EditProductForm;
 
                         Product.ProductType = context.ProductsTypes.FirstOrDefault(pt => pt.Id == Product.ProductType.Id);
 
@@ -69,14 +87,12 @@ namespace VovasKursach.ViewModel
                         try
                         {
                             context.SaveChanges();
+                            form.DialogResult = true;
                         }
                         catch (Exception ex)
                         {
                             System.Windows.MessageBox.Show(ex.Message);
-                        }
-                        finally
-                        {
-                            form.Close();
+                            form.DialogResult = false;
                         }
                     }
                 }, (obj) =>
@@ -136,7 +152,7 @@ namespace VovasKursach.ViewModel
             }
         }
 
-        public ICommand DeleteIngredients
+        public ICommand DeleteIngredient
         {
             get
             {
@@ -166,11 +182,6 @@ namespace VovasKursach.ViewModel
                     OnProperyChanged(nameof(ProductTypes));
                 });
             }
-        }
-
-        public AddProductFormViewModel()
-        {
-            Product = new Product();
         }
     }
 }

@@ -61,6 +61,7 @@
         <StackPanel Grid.Row="1" Margin="3" Orientation="Horizontal">
             <Button Content="Добавить" FontSize="17" Margin="5" Padding="5" Command="{Binding CreateProductCommand}" />
             <Button Content="Удалить" FontSize="17" Margin="5" Padding="5" Command="{Binding DeleteProductCommand}" CommandParameter="{Binding ElementName=listView, Path=SelectedItem}" />
+            <Button Content="Редактировать" FontSize="17" Margin="5" Padding="5" Command="{Binding EditProductCommand}" CommandParameter="{Binding ElementName=listView, Path=SelectedItem}" />
             <Button Content="Адчёт" FontSize="17" Margin="5" Padding="5" Command="{Binding CreateReportCommand}" />
         </StackPanel>
     </Grid>

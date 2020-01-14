@@ -1,4 +1,6 @@
 ﻿using System;
+//using System.Data.Entity;
+using System.Data.Entity.Include;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -55,6 +57,14 @@ namespace VovasKursach.ViewModel
             }
         }
 
+        public ICommand EditProductCommand
+        {
+            get
+            {
+                return new Command(EditProduct);
+            }
+        }
+
         private void ProductDetails(object parameter)
         {
             Product p = parameter as Product;
@@ -108,6 +118,29 @@ namespace VovasKursach.ViewModel
                 {
                     System.Windows.MessageBox.Show(ex.Message);
                 }
+            }
+        }
+
+        private void EditProduct(object parameter)
+        {
+            Product productToEdit = parameter as Product;
+
+            EditProductForm form = new EditProductForm();
+
+            using (var context = new KursachDBContext())
+            {
+                ((EditProductFormViewModel)form.DataContext).Product = 
+                    context.Products
+                    .Include("IngredientsProducts")
+                    .Include("IngredientsProducts.Ingredient")
+                    .Include("IngredientsProducts.Ingredient.Unit")
+                    .Include(p => p.ProductType)
+                    .FirstOrDefault(p => p.Id == productToEdit.Id);
+            }
+
+            if (form.ShowDialog().Value)
+            {
+                OnProperyChanged(nameof(Products));
             }
         }
 

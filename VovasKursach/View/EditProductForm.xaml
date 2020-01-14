@@ -1,0 +1,73 @@
+﻿<Window x:Class="VovasKursach.View.EditProductForm"
+        x:Name="form"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VovasKursach.View"
+        xmlns:viewModel="clr-namespace:VovasKursach.ViewModel"
+        mc:Ignorable="d"
+        Title="EditProductForm" Height="550" Width="800">
+    <Window.DataContext>
+        <viewModel:EditProductFormViewModel x:Name="viewModel" />
+    </Window.DataContext>
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Content="Название блюда:" FontSize="15" Margin="3" HorizontalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Product.Name}" FontSize="15" Margin="3" />
+
+        <Label Grid.Column="0" Grid.Row="1" Content="Тип продукта:" FontSize="15" Margin="3" HorizontalAlignment="Center" />
+        <ComboBox Grid.Column="1" Grid.Row="1" FontSize="15" Margin="3" ItemsSource="{Binding ProductTypes}" DisplayMemberPath="TypeName"  SelectedValuePath="{Binding ProductType}" /> <!--SelectedItem="{Binding ProductType}"-->
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Фото продукта:" FontSize="15" Margin="3" HorizontalAlignment="Center" />
+        <Grid Grid.Column="1" Grid.Row="2" Margin="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Content="{Binding Product.ProductImagePath}" FontSize="15" Margin="3" Padding="3" />
+            <Button Content="Выбрать фото" FontSize="15" Grid.Column="1" Padding="3" Margin="3" Command="{Binding SelectProductPicture}" />
+        </Grid>
+
+        <Label Grid.Column="0" Grid.Row="3" Content="Ингредиенты:" FontSize="15" Margin="3" HorizontalAlignment="Center" />
+        <Grid Grid.Column="1" Grid.Row="3" Margin="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Column="0" Margin="3" ItemsSource="{Binding IngridientsProducts}" x:Name="ingredientsListView">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Ingredient.Name}" />
+                        <GridViewColumn Header="Количество" DisplayMemberBinding="{Binding IngCount}" />
+                        <GridViewColumn Header="Еденицы измерения" DisplayMemberBinding="{Binding Ingredient.Unit.Name}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Grid.Column="1" >
+                <Button Margin="3" Padding="3" Content="Добавить ингредиент" FontSize="15" Command="{Binding AddIngredient}" />
+                <Button Margin="3" Padding="3" Content="Удалить ингредиент" FontSize="15" Command="{Binding DeleteIngredient}" CommandParameter="{Binding ElementName=ingredientsListView}" />
+            </StackPanel>
+        </Grid>
+
+        <Label Grid.Column="0" Grid.Row="4" Content="Рецепт блюда:" FontSize="15" HorizontalAlignment="Center" Margin="3" />
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Product.RecipeText}" FontSize="15" Margin="3" />
+
+        <Button Grid.Column="0" Grid.Row="5" Content="Сохранить изменения" Command="{Binding SaveProductCommand}" CommandParameter="{Binding ElementName=form}" FontSize="15" Padding="3" Margin="5" Grid.ColumnSpan="2" x:Name="createProduct" />
+
+        <Button Grid.Column="0" Grid.Row="6" Content="Добавить новый тип блюд" Command="{Binding CreateProductType}" FontSize="15" Padding="3" Margin="5" Grid.ColumnSpan="2" />
+    </Grid>
+</Window>

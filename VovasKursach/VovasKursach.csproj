@@ -68,6 +68,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="ThenInclude.EF6, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ThenInclude.EF6.1.0.0.8\lib\net452\ThenInclude.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -122,6 +125,7 @@
     <Compile Include="ViewModel\CreateIngredientTypeFormViewModel.cs" />
     <Compile Include="ViewModel\CreateProductTypeFormViewModel.cs" />
     <Compile Include="ViewModel\CreateUnitFormViewModel.cs" />
+    <Compile Include="ViewModel\EditProductFormViewModel.cs" />
     <Compile Include="ViewModel\ProductDetailsFormViewModel.cs" />
     <Compile Include="ViewModel\ProductsListFormViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -142,6 +146,9 @@
     </Compile>
     <Compile Include="View\CreateUnitForm.xaml.cs">
       <DependentUpon>CreateUnitForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditProductForm.xaml.cs">
+      <DependentUpon>EditProductForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProductDetailsForm.xaml.cs">
       <DependentUpon>ProductDetailsForm.xaml</DependentUpon>
@@ -209,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CreateUnitForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditProductForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
