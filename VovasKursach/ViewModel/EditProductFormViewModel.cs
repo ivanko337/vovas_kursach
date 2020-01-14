@@ -75,14 +75,12 @@ namespace VovasKursach.ViewModel
 
                         Product.ProductType = context.ProductsTypes.FirstOrDefault(pt => pt.Id == Product.ProductType.Id);
 
+                        context.Entry(Product).State = System.Data.Entity.EntityState.Modified;
+
                         foreach (var item in Product.IngredientsProducts)
                         {
-                            // ох, костыли - моя жизнь
-                            // сие дело нужно для того, чтобы ингредиенты в бд не дублировались
                             context.Entry(item.Ingredient).State = System.Data.Entity.EntityState.Modified;
                         }
-
-                        context.Products.Add(this.Product);
 
                         try
                         {
